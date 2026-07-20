@@ -96,7 +96,13 @@ npm run build
 # Start the compiled self-contained bundle
 npm run start
 ```
-
+---
+### 3. Deployment Details
+- **AI Generation:** Built using Google AI Studio App Build and connected directly to this GitHub repository.
+- **Cloudflare Pages:** Deployed via Cloudflare Pages GitHub integration.
+- **Build Command:** `npm run build`
+- **Output Directory:** `dist`
+- **Live URL:** [https://stack-ai-weather-app.pages.dev/]
 ---
 
 ## 📄 API Documentation
