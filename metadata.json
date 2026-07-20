@@ -1,0 +1,6 @@
+{
+  "name": "Weather Intelligence",
+  "description": "A sophisticated full-stack Weather dashboard providing 7-day forecasts, geocoding city search, and smart weather recommendations mapped to conditions.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
