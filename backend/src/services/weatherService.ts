@@ -29,13 +29,12 @@ export class WeatherService {
       }
     } catch (error: any) {
       console.error("Geocoding API failed:", error.message || error);
-      throw new Error(`Upstream geocoding service failed: ${error.message || "Unknown error"}`);
+      throw new Error(`Geocoding service failed: ${error.message || "Unknown error"}`);
     }
 
+    // ⚠️ Clean frontend error throwing (Replaced the Node.js statusCode = 404 logic)
     if (geocodingResults.length === 0) {
-      const err = new Error(`City "${cleanCity}" not found`);
-      (err as any).statusCode = 404;
-      throw err;
+      throw new Error(`City "${cleanCity}" not found`);
     }
 
     const location = geocodingResults[0];
@@ -49,11 +48,11 @@ export class WeatherService {
       forecastData = forecastResponse.data;
     } catch (error: any) {
       console.error("Forecast API failed:", error.message || error);
-      throw new Error(`Upstream forecast service failed: ${error.message || "Unknown error"}`);
+      throw new Error(`Forecast service failed: ${error.message || "Unknown error"}`);
     }
 
     if (!forecastData || !forecastData.current || !forecastData.daily) {
-      throw new Error("Failed to retrieve valid weather forecast data from upstream API");
+      throw new Error("Failed to retrieve valid weather forecast data from API");
     }
 
     // 3. Process current weather
@@ -126,7 +125,8 @@ export class WeatherService {
       return [];
     } catch (error: any) {
       console.error("Geocoding search API failed:", error.message || error);
-      return [];
+      // ⚠️ Throw the error so the UI can catch and display it instead of swallowing it
+      throw new Error(`Search failed: ${error.message || "Unknown error"}`);
     }
   }
 }
